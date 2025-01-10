@@ -1,0 +1,32 @@
+{
+    // Tell VS Code which Dockerfile to use
+    "build": {
+        "context": "..", // go one level up if Dockerfile is outside .devcontainer
+        "dockerfile": "Dockerfile" // path relative to this devcontainer folder
+    },
+    // Use the new 'customizations' key for VS Code settings & extensions
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Example: Python, ESLint, Docker, etc.
+                "ms-python.python",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                "editor.tabSize": 2,
+                "files.exclude": {
+                    "**/__pycache__": true
+                }
+            }
+        }
+    },
+    // A friendly name for your container in VS Code
+    "name": "eBUS App DevContainer",
+    // Keep the default command from the Dockerfile (don't override)
+    "overrideCommand": false,
+    "postCreateCommand": "echo 'Devcontainer started!'",
+    // Specify any user in the container (if your Dockerfile sets one up)
+    "remoteUser": "vscode",
+    // Folder in the container where VS Code should open
+    "workspaceFolder": "/workspace/ebus-app"
+}
