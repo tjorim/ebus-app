@@ -29,6 +29,13 @@ main {
     padding: 15px;
     margin-top: 10px;
     border-radius: 5px;
+    min-height: 200px;
+}
+
+.loading {
+    color: #666;
+    text-align: center;
+    font-style: italic;
 }
 
 footer {
