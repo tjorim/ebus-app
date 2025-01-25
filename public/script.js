@@ -1,8 +1,7 @@
+// Fetch eBUS data from the server endpoint
 async function fetchData() {
     const container = document.getElementById('data-container');
-    
-    // Indicate loading state
-    container.textContent = 'Loading data...';
+    container.textContent = 'Loading data...';    // Indicate loading state
 
     try {
         const response = await fetch('/api/data');
@@ -21,22 +20,14 @@ function displayData(data) {
     const container = document.getElementById('data-container');
     
     // Clear previous content
-    container.innerHTML = ''; 
-    
-    // Assume `data` is an array of objects for example
-    if (Array.isArray(data) && data.length > 0) {
-        const list = document.createElement('ul'); // Create a list to display data
-        data.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = JSON.stringify(item, null, 2); // Format item as JSON
-            list.appendChild(listItem);
-        });
-        container.appendChild(list); // Append the list to the container
-    } else {
-        container.textContent = 'No data available.'; // Handle empty data
-    }
+    container.innerHTML = '';
+
+    // Create a formatted string from the data object
+    const formattedData = Object.entries(data)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n');
+    container.innerHTML = `<pre>${formattedData}</pre>`;
 }
 
-// Update every 5 seconds
-setInterval(fetchData, 5000);
-fetchData(); // Initial fetch on page load
+setInterval(fetchData, 5000); // Update data every 5 seconds
+fetchData(); // Initial fetch when page loads
